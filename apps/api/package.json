@@ -1,0 +1,41 @@
+{
+  "name": "@p2p-share/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build -p tsconfig.build.json",
+    "dev": "nest start --watch -p tsconfig.build.json",
+    "start": "nest start",
+    "start:prod": "node dist/main.js",
+    "start:debug": "nest start --debug --watch",
+    "lint": "eslint \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf dist .turbo",
+    "migrate": "ts-node src/database/migration-runner.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/config": "^4.0.0",
+    "@nestjs/platform-express": "^11.1.0",
+    "pg": "^8.16.0",
+    "ioredis": "^5.6.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "zod": "^3.24.0",
+    "@p2p-share/shared-types": "workspace:*",
+    "@p2p-share/shared-utils": "workspace:*",
+    "@p2p-share/shared-config": "workspace:*"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@types/express": "^5",
+    "@types/node": "^20",
+    "@types/pg": "^8.11.0",
+    "typescript": "^5.8.0",
+    "ts-node": "^10.9.0",
+    "rimraf": "^6.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}
