@@ -1,7 +1,9 @@
 /**
  * Environment variable validation schemas using Zod.
  */
+
 import { z } from 'zod';
+
 /** Backend environment variable schema */
 export const backendEnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
@@ -12,12 +14,14 @@ export const backendEnvSchema = z.object({
   CORS_ORIGIN: z.string().default('http://localhost:3000'),
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
 });
+
 /** Frontend environment variable schema */
 export const frontendEnvSchema = z.object({
   NEXT_PUBLIC_API_URL: z.string().url().default('http://localhost:4000'),
   NEXT_PUBLIC_WS_URL: z.string().url().default('ws://localhost:4001'),
   NEXT_PUBLIC_APP_NAME: z.string().default('P2P FileShare'),
 });
+
 /** Inferred types */
 export type BackendEnv = z.infer<typeof backendEnvSchema>;
 export type FrontendEnv = z.infer<typeof frontendEnvSchema>;

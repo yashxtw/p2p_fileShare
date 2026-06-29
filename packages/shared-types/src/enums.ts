@@ -1,51 +1,67 @@
 /**
  * Shared enumerations used across the P2P file sharing platform.
  */
-/** Status of a file transfer operation */
-export enum TransferStatus {
-  PENDING = 'PENDING',
+
+/** Session lifecycle states — models the state machine */
+export enum SessionStatus {
+  WAITING = 'WAITING',
+  JOINED = 'JOINED',
   CONNECTING = 'CONNECTING',
+  CONNECTED = 'CONNECTED',
   TRANSFERRING = 'TRANSFERRING',
-  PAUSED = 'PAUSED',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
+  EXPIRED = 'EXPIRED',
   CANCELLED = 'CANCELLED',
 }
+
 /** Standardized error codes */
 export enum ErrorCode {
   // General
   INTERNAL_ERROR = 'INTERNAL_ERROR',
   VALIDATION_ERROR = 'VALIDATION_ERROR',
   NOT_FOUND = 'NOT_FOUND',
-  UNAUTHORIZED = 'UNAUTHORIZED',
-  FORBIDDEN = 'FORBIDDEN',
   RATE_LIMITED = 'RATE_LIMITED',
-  // Auth
-  INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
-  TOKEN_EXPIRED = 'TOKEN_EXPIRED',
-  TOKEN_INVALID = 'TOKEN_INVALID',
+
+  // Session
+  SESSION_NOT_FOUND = 'SESSION_NOT_FOUND',
+  SESSION_EXPIRED = 'SESSION_EXPIRED',
+  SESSION_FULL = 'SESSION_FULL',
+  INVALID_SESSION_CODE = 'INVALID_SESSION_CODE',
+  INVALID_STATE_TRANSITION = 'INVALID_STATE_TRANSITION',
+
   // Transfer
   TRANSFER_FAILED = 'TRANSFER_FAILED',
   PEER_DISCONNECTED = 'PEER_DISCONNECTED',
   FILE_TOO_LARGE = 'FILE_TOO_LARGE',
+
   // Database
   DATABASE_ERROR = 'DATABASE_ERROR',
   DUPLICATE_ENTRY = 'DUPLICATE_ENTRY',
 }
-/** User role */
-export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
+
+/** Audit log event types */
+export enum AuditEventType {
+  SESSION_CREATED = 'SESSION_CREATED',
+  SESSION_JOINED = 'SESSION_JOINED',
+  SESSION_EXPIRED = 'SESSION_EXPIRED',
+  SESSION_CANCELLED = 'SESSION_CANCELLED',
+  STATUS_CHANGED = 'STATUS_CHANGED',
+  FILE_ADDED = 'FILE_ADDED',
+  DEVICE_REGISTERED = 'DEVICE_REGISTERED',
 }
+
 /** WebSocket event types */
 export enum WsEvent {
   // Connection
   CONNECT = 'connect',
   DISCONNECT = 'disconnect',
+
   // Signaling
   SIGNAL_OFFER = 'signal:offer',
   SIGNAL_ANSWER = 'signal:answer',
   SIGNAL_ICE = 'signal:ice',
+
   // Transfer
   TRANSFER_INIT = 'transfer:init',
   TRANSFER_ACCEPT = 'transfer:accept',
@@ -53,8 +69,9 @@ export enum WsEvent {
   TRANSFER_PROGRESS = 'transfer:progress',
   TRANSFER_COMPLETE = 'transfer:complete',
   TRANSFER_ERROR = 'transfer:error',
-  // Room
-  ROOM_JOIN = 'room:join',
-  ROOM_LEAVE = 'room:leave',
-  ROOM_PEERS = 'room:peers',
+
+  // Session
+  SESSION_JOIN = 'session:join',
+  SESSION_LEAVE = 'session:leave',
+  SESSION_PEERS = 'session:peers',
 }

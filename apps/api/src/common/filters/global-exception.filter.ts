@@ -9,6 +9,7 @@ import type { Response } from 'express';
 import { LoggerService } from '../logger/logger.service';
 import type { ApiErrorResponse } from '@p2p-share/shared-types';
 import { AppError } from '@p2p-share/shared-utils';
+
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   constructor(private readonly logger: LoggerService) {}
@@ -43,6 +44,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       message = 'Internal server error';
       errorCode = 'INTERNAL_ERROR';
     }
+    
     // Log the error
     this.logger.error(
       `${request.method} ${request.url} → ${statusCode}: ${message}`,

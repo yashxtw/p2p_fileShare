@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 interface LogEntry {
   level: string;
   message: string;
@@ -10,6 +11,7 @@ interface LogEntry {
     stack?: string;
   };
 }
+
 @Injectable()
 export class LoggerService {
   private readonly isProduction = process.env.NODE_ENV === 'production';

@@ -2,6 +2,7 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 import { LoggerService } from '../common/logger/logger.service';
+
 @Injectable()
 export class RedisService implements OnModuleInit, OnModuleDestroy {
   private client!: Redis;
@@ -36,37 +37,45 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       this.logger.warn('Redis connection closed', 'RedisService');
     });
   }
+
   async onModuleDestroy() {
     if (this.client) {
       await this.client.quit();
       this.logger.info('Redis connection closed gracefully', 'RedisService');
     }
   }
+
   /** Get a value by key */
   async get(key: string): Promise<string | null> {
     return this.client.get(key);
   }
+
   /** Set a value */
   async set(key: string, value: string): Promise<void> {
     await this.client.set(key, value);
   }
+
   /** Set a value with TTL (in seconds) */
   async setWithTTL(key: string, value: string, ttlSeconds: number): Promise<void> {
     await this.client.set(key, value, 'EX', ttlSeconds);
   }
+
   /** Delete a key */
   async del(key: string): Promise<number> {
     return this.client.del(key);
   }
+
   /** Check if a key exists */
   async exists(key: string): Promise<boolean> {
     const result = await this.client.exists(key);
     return result === 1;
   }
+
   /** Get the underlying Redis client for advanced operations */
   getClient(): Redis {
     return this.client;
   }
+  
   /** Health check — PING */
   async healthCheck(): Promise<void> {
     const result = await this.client.ping();

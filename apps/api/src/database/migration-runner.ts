@@ -6,11 +6,15 @@
  * 
  * Usage: npx ts-node src/database/migration-runner.ts
  */
+
+import 'dotenv/config';
 import { Pool } from 'pg';
 import * as fs from 'fs';
 import * as path from 'path';
+
 const MIGRATIONS_DIR = path.join(__dirname, 'migrations');
 const MIGRATIONS_TABLE = '_migrations';
+
 async function run() {
   const databaseUrl = process.env.NEON_DATABASE_URL;
   if (!databaseUrl) {
@@ -30,11 +34,13 @@ async function run() {
         executed_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
     `);
+
     // Get already-executed migrations
     const { rows: executed } = await pool.query(
       `SELECT name FROM ${MIGRATIONS_TABLE} ORDER BY id`,
     );
     const executedNames = new Set(executed.map((r: { name: string }) => r.name));
+    
     // Read migration files
     if (!fs.existsSync(MIGRATIONS_DIR)) {
       console.warn('⚠️  No migrations directory found');
@@ -80,4 +86,5 @@ async function run() {
     await pool.end();
   }
 }
+
 run();

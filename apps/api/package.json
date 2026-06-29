@@ -15,17 +15,18 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.1.0",
-    "@nestjs/core": "^11.1.0",
     "@nestjs/config": "^4.0.0",
+    "@nestjs/core": "^11.1.0",
     "@nestjs/platform-express": "^11.1.0",
-    "pg": "^8.16.0",
-    "ioredis": "^5.6.0",
-    "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.0",
-    "zod": "^3.24.0",
+    "@nestjs/schedule": "^6.1.3",
+    "@p2p-share/shared-config": "workspace:*",
     "@p2p-share/shared-types": "workspace:*",
     "@p2p-share/shared-utils": "workspace:*",
-    "@p2p-share/shared-config": "workspace:*"
+    "ioredis": "^5.6.0",
+    "pg": "^8.16.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "zod": "^3.24.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.0",
@@ -33,9 +34,10 @@
     "@types/express": "^5",
     "@types/node": "^20",
     "@types/pg": "^8.11.0",
-    "typescript": "^5.8.0",
-    "ts-node": "^10.9.0",
+    "dotenv": "^17.4.2",
     "rimraf": "^6.0.0",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.8.0"
   }
 }

@@ -19,6 +19,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
     private readonly configService: ConfigService,
     private readonly logger: LoggerService,
   ) {}
+  
   async onModuleInit() {
     const databaseUrl = this.configService.get<string>('NEON_DATABASE_URL');
     this.pool = new Pool({

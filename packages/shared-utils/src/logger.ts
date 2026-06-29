@@ -1,7 +1,9 @@
 /**
  * Logger utility for structured logging.
  */
+
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+
 export interface LogEntry {
   level: LogLevel;
   message: string;
@@ -14,12 +16,14 @@ export interface LogEntry {
     code?: string;
   };
 }
+
 const LOG_LEVEL_PRIORITY: Record<LogLevel, number> = {
   debug: 0,
   info: 1,
   warn: 2,
   error: 3,
 };
+
 export function createLogger(context: string, minLevel: LogLevel = 'info') {
   const isProduction = process.env.NODE_ENV === 'production';
   const minPriority = LOG_LEVEL_PRIORITY[minLevel];
@@ -41,6 +45,7 @@ export function createLogger(context: string, minLevel: LogLevel = 'info') {
     }
     return output;
   }
+
   function log(level: LogLevel, message: string, data?: Record<string, unknown>) {
     if (LOG_LEVEL_PRIORITY[level] < minPriority) return;
     const entry: LogEntry = {
@@ -63,6 +68,7 @@ export function createLogger(context: string, minLevel: LogLevel = 'info') {
         console.log(formatted);
     }
   }
+  
   return {
     debug: (message: string, data?: Record<string, unknown>) => log('debug', message, data),
     info: (message: string, data?: Record<string, unknown>) => log('info', message, data),

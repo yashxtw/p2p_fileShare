@@ -2,12 +2,14 @@ import { Controller, Get } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { RedisService } from '../redis/redis.service';
 import type { HealthCheckResponse, ServiceHealth } from '@p2p-share/shared-types';
+
 @Controller('health')
 export class HealthController {
   constructor(
     private readonly databaseService: DatabaseService,
     private readonly redisService: RedisService,
   ) {}
+
   @Get()
   async check(): Promise<HealthCheckResponse> {
     const [dbHealth, redisHealth] = await Promise.all([
@@ -25,6 +27,7 @@ export class HealthController {
       },
     };
   }
+
   private async checkDatabase(): Promise<ServiceHealth> {
     try {
       const start = Date.now();
@@ -39,6 +42,7 @@ export class HealthController {
       };
     }
   }
+  
   private async checkRedis(): Promise<ServiceHealth> {
     try {
       const start = Date.now();
