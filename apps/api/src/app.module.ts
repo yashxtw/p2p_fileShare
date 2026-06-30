@@ -8,6 +8,7 @@ import { LoggerModule } from './common/logger/logger.module';
 import { CacheModule } from './cache/cache.module';
 import { SessionModule } from './sessions/session.module';
 import { DeviceModule } from './devices/device.module';
+import { SignalingModule } from './signaling/signaling.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { DeviceModule } from './devices/device.module';
     HealthModule,
     SessionModule,
     DeviceModule,
+    SignalingModule,
   ],
 })
 export class AppModule {}

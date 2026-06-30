@@ -11,33 +11,59 @@
     "lint": "eslint \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
     "clean": "rimraf dist .turbo",
-    "migrate": "ts-node src/database/migration-runner.ts"
+    "migrate": "ts-node src/database/migration-runner.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.1.0",
     "@nestjs/platform-express": "^11.1.0",
+    "@nestjs/platform-socket.io": "^11.1.27",
     "@nestjs/schedule": "^6.1.3",
+    "@nestjs/websockets": "^11.1.27",
     "@p2p-share/shared-config": "workspace:*",
     "@p2p-share/shared-types": "workspace:*",
     "@p2p-share/shared-utils": "workspace:*",
+    "@socket.io/redis-adapter": "^8.3.0",
     "ioredis": "^5.6.0",
     "pg": "^8.16.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.0",
+    "socket.io": "^4.8.3",
     "zod": "^3.24.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.1.27",
     "@types/express": "^5",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/pg": "^8.11.0",
     "dotenv": "^17.4.2",
+    "jest": "^30.4.2",
     "rimraf": "^6.0.0",
     "source-map-support": "^0.5.21",
+    "ts-jest": "^29.4.11",
     "ts-node": "^10.9.0",
     "typescript": "^5.8.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }

@@ -2,7 +2,9 @@
  * Typed fetch wrapper for API calls.
  */
 import type { ApiResponse, ApiErrorResponse } from '@p2p-share/shared-types';
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 class ApiClientError extends Error {
   constructor(
     message: string,
@@ -14,6 +16,7 @@ class ApiClientError extends Error {
     this.name = 'ApiClientError';
   }
 }
+
 async function request<T>(
   endpoint: string,
   options: RequestInit = {},
@@ -39,6 +42,7 @@ async function request<T>(
   }
   return (json as ApiResponse<T>).data;
 }
+
 export const apiClient = {
   get: <T>(endpoint: string, options?: RequestInit) =>
     request<T>(endpoint, { ...options, method: 'GET' }),

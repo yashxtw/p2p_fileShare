@@ -38,6 +38,14 @@ export enum ErrorCode {
   // Database
   DATABASE_ERROR = 'DATABASE_ERROR',
   DUPLICATE_ENTRY = 'DUPLICATE_ENTRY',
+
+  // Signaling Specific
+  PEER_OFFLINE = 'PEER_OFFLINE',
+  INVALID_OFFER = 'INVALID_OFFER',
+  INVALID_ANSWER = 'INVALID_ANSWER',
+  INVALID_CANDIDATE = 'INVALID_CANDIDATE',
+  STATE_TRANSITION_INVALID = 'STATE_TRANSITION_INVALID',
+  UNKNOWN_SOCKET = 'UNKNOWN_SOCKET',
 }
 
 /** Audit log event types */
@@ -74,4 +82,37 @@ export enum WsEvent {
   SESSION_JOIN = 'session:join',
   SESSION_LEAVE = 'session:leave',
   SESSION_PEERS = 'session:peers',
+
+  // Client -> Server Events
+  CREATE_SESSION = 'create-session',
+  JOIN_SESSION = 'join-session',
+  OFFER = 'offer',
+  ANSWER = 'answer',
+  ICE_CANDIDATE = 'ice-candidate',
+  HEARTBEAT = 'heartbeat',
+  DISCONNECT_SESSION = 'disconnect-session',
+  LEAVE_SESSION = 'leave-session',
+
+  // Server -> Client Events
+  SESSION_CREATED = 'session-created',
+  PEER_JOINED = 'peer-joined',
+  OFFER_RECEIVED = 'offer-received',
+  ANSWER_RECEIVED = 'answer-received',
+  ICE_CANDIDATE_RECEIVED = 'ice-candidate-received',
+  PEER_CONNECTED = 'peer-connected',
+  PEER_DISCONNECTED = 'peer-disconnected',
+  CONNECTION_STATE_CHANGED = 'connection-state-changed',
+  ERROR = 'error',
+  HEARTBEAT_ACK = 'heartbeat-ack',
+}
+
+/** WebRTC connection states tracked in signaling */
+export enum WebRtcState {
+  WAITING = 'WAITING',
+  JOINED = 'JOINED',
+  PAIRING = 'PAIRING',
+  NEGOTIATING = 'NEGOTIATING',
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED',
+  FAILED = 'FAILED',
 }

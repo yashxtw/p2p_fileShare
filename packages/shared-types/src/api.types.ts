@@ -73,9 +73,42 @@ export interface UpdateSessionStatusRequest {
   status: SessionStatus;
 }
 /** GET /sessions/:id or /sessions/code/:code */
-export interface SessionDetailResponse {
+export interface SessionDetailResponse extends Session{
   session: Session;
   senderDevice?: Device;
   receiverDevice?: Device;
   files: TransferFile[];
+}
+
+// ─── WebRTC Signaling Event Payloads ──────────────────────
+export interface OfferPayload {
+  sessionId: string;
+  senderDeviceId: string;
+  offer: {
+    type: 'offer';
+    sdp: string;
+  };
+}
+
+export interface AnswerPayload {
+  sessionId: string;
+  receiverDeviceId: string;
+  answer: {
+    type: 'answer';
+    sdp: string;
+  };
+}
+
+export interface IceCandidatePayload {
+  sessionId: string;
+  candidate: {
+    candidate: string;
+    sdpMid: string | null;
+    sdpMLineIndex: number | null;
+    usernameFragment?: string | null;
+  };
+}
+
+export interface HeartbeatPayload {
+  deviceId: string;
 }

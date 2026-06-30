@@ -11,16 +11,17 @@
     "clean": "rimraf .next .turbo"
   },
   "dependencies": {
-    "next": "16.2.9",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "next-themes": "^0.4.0",
-    "@tanstack/react-query": "^5.80.0",
-    "zustand": "^5.0.0",
+    "@p2p-share/shared-config": "workspace:*",
     "@p2p-share/shared-types": "workspace:*",
     "@p2p-share/shared-utils": "workspace:*",
-    "@p2p-share/shared-config": "workspace:*",
-    "@p2p-share/ui": "workspace:*"
+    "@p2p-share/ui": "workspace:*",
+    "@tanstack/react-query": "^5.80.0",
+    "next": "16.2.9",
+    "next-themes": "^0.4.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "socket.io-client": "^4.8.3",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -29,8 +30,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "rimraf": "^6.0.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "rimraf": "^6.0.0"
+    "typescript": "^5"
   }
 }
