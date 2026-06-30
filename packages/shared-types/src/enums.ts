@@ -116,3 +116,26 @@ export enum WebRtcState {
   DISCONNECTED = 'DISCONNECTED',
   FAILED = 'FAILED',
 }
+
+/** Individual file transfer states within the queue */
+export enum TransferQueueState {
+  WAITING = 'WAITING',
+  PREPARING = 'PREPARING',
+  SENDING = 'SENDING',
+  VERIFYING = 'VERIFYING',
+  COMPLETED = 'COMPLETED',
+  FAILED = 'FAILED',
+  CANCELLED = 'CANCELLED',
+}
+
+/** Global file transfer engine state */
+export enum TransferState {
+  IDLE = 'IDLE',
+  FILES_SELECTED = 'FILES_SELECTED',
+  PREPARING = 'PREPARING',
+  NEGOTIATING = 'NEGOTIATING',
+  TRANSFERRING = 'TRANSFERRING',
+  VERIFYING = 'VERIFYING',
+  COMPLETED = 'COMPLETED',
+  FAILED = 'FAILED',
+}
